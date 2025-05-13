@@ -36,7 +36,8 @@ mnist-digit-4-gan/
 ├── images/
 │   └── sample_output.png       # Exemplo de imagem gerada (opcional)
 └── README.md                   # Este arquivo de descrição do projeto
-'''
+```
+
 
 Observação: O dataset MNIST é baixado automaticamente pelo torchvision ao executar o notebook e, por padrão, é salvo em um diretório ./data/. É recomendado adicionar este diretório ao seu arquivo .gitignore se não desejar versioná-lo. Os arquivos .pt na pasta models/ contêm os modelos treinados.
 
