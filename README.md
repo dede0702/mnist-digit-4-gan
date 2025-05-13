@@ -1,129 +1,154 @@
-# GAN para Geração do Dígito "4" do MNIST com PyTorch
+# 🧠 MNIST-GAN: Geração do Dígito "4" com Redes Adversárias
 
-Este projeto implementa uma Rede Adversarial Generativa (GAN) para gerar imagens manuscritas do dígito "4", utilizando o subconjunto correspondente do dataset MNIST e a biblioteca PyTorch.
-
-O notebook principal do projeto, contendo todo o código e as execuções, é o `MNIST_GAN_Digito4.ipynb`.
+Este projeto implementa uma Rede Adversarial Generativa (GAN) utilizando PyTorch, com o objetivo de gerar imagens manuscritas do dígito **"4"** com base no dataset MNIST.
 
 [![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dede0702/mnist-digit-4-gan/blob/main/MNIST_GAN_Digito4.ipynb)
-*(Certifique-se de que o arquivo `MNIST_GAN_Digito4.ipynb` está no diretório raiz do seu repositório na branch `main` para este link funcionar corretamente)*
+
+> *Certifique-se de que o arquivo `MNIST_GAN_Digito4.ipynb` esteja no diretório raiz do repositório para o link do Colab funcionar corretamente.*
+
+---
 
 ## 🎯 Objetivo
 
-O objetivo principal é construir, treinar e avaliar um modelo GAN capaz de:
-1. Aprender a distribuição dos dados das imagens do dígito "4" do MNIST.
-2. Gerar novas amostras de imagens do dígito "4" que sejam visualmente realistas e diversificadas.
-3. Demonstrar o processo de treinamento de GANs para uma tarefa de geração de imagem específica.
+- Aprender a distribuição dos dados das imagens do dígito "4" do MNIST.
+- Gerar novas amostras realistas e diversificadas do dígito "4".
+- Demonstrar o processo de treinamento de GANs para uma tarefa de geração específica.
 
-## 🧑‍💻 Integrantes
+---
 
-- Andre Rovai        (RM555848)
-- Lancelot Chagas    (RM554707)
+## 👨‍💻 Integrantes
 
-## 📂 Estrutura do Repositório
+- **Andre Rovai** — RM555848  
+- **Lancelot Chagas** — RM554707
 
-A estrutura de arquivos do projeto é a seguinte:
+---
 
-'''
+## 📁 Estrutura do Repositório
+
+A estrutura de arquivos do projeto é organizada da seguinte forma:
+
+```bash
 mnist-digit-4-gan/
-│
-├── MNIST_GAN_Digito4.ipynb # Notebook principal com todo o código, treinamento e visualizações
-├── generator_4.pt # Pesos do modelo Gerador treinado (state_dict)
-├── discriminator_4.pt # Pesos do modelo Discriminador treinado (state_dict)
-└── README.md # Este arquivo de descrição do projeto
+├── models/
+│   ├── generator_4.pt          # Pesos do Gerador treinado
+│   └── discriminator_4.pt      # Pesos do Discriminador treinado
+├── MNIST_GAN_Digito4.ipynb     # Notebook principal com o código e execução
+├── images/
+│   └── sample_output.png       # Exemplo de imagem gerada (opcional)
+└── README.md                   # Este arquivo de descrição do projeto
 '''
 
-*Observação: Os arquivos `.pt` contêm os modelos treinados. O dataset MNIST é baixado automaticamente pelo script no notebook e geralmente não é incluído no repositório.*
+Observação: O dataset MNIST é baixado automaticamente pelo torchvision ao executar o notebook e, por padrão, é salvo em um diretório ./data/. É recomendado adicionar este diretório ao seu arquivo .gitignore se não desejar versioná-lo. Os arquivos .pt na pasta models/ contêm os modelos treinados.
 
-## 🛠️ Tecnologias Utilizadas
+⚙️ Tecnologias Utilizadas
+Python 3.x
+PyTorch
+Torchvision
+Matplotlib
 
-- Python 3.x
-- PyTorch
-- Torchvision (para o dataset MNIST e transformações)
-- Matplotlib (para visualização de imagens)
+🚦 Etapas do Notebook (MNIST_GAN_Digito4.ipynb)
+O notebook está organizado nas seguintes seções principais:
 
-## ⚙️ Estrutura do Código (conforme no Notebook `MNIST_GAN_Digito4.ipynb`)
+1. Instalação de Dependências
+Instalação via pip (se local) ou execução de células Colab para torch, torchvision, matplotlib.
 
-O projeto está estruturado nas seguintes etapas principais dentro do notebook:
+2. Importações
+Importa as bibliotecas principais e módulos necessários.
 
-1.  **Etapa 1: Instalar dependências**
-    *   Instalação das bibliotecas necessárias (`torch`, `torchvision`, `matplotlib`).
+3. Dataset: Apenas Dígito "4"
+Define e implementa a classe MNIST4Dataset que carrega o dataset MNIST, filtra para incluir somente imagens do número "4", e aplica as transformações necessárias (normalização, etc.). Criação do DataLoader.
 
-2.  **Etapa 2: Importar bibliotecas**
-    *   Importação dos módulos essenciais para o projeto.
+4. Modelo: Discriminador
+Define a arquitetura da rede neural convolucional (CNN) que atuará como o Discriminador, responsável por classificar as imagens como reais ou falsas.
 
-3.  **Etapa 3: Carregar apenas os dígitos 4 do MNIST (usando torchvision)**
-    *   Implementação da classe `MNIST4Dataset`:
-        *   Carrega o dataset MNIST utilizando `torchvision.datasets.MNIST`.
-        *   Filtra o dataset para incluir apenas as imagens correspondentes ao dígito "4".
-        *   Realiza o pré-processamento necessário nas imagens (normalização para o intervalo `[-1, 1]` e adição da dimensão do canal).
-    *   Criação do `DataLoader` para fornecer os dados em batches.
+5. Modelo: Gerador
+Define a arquitetura da rede neural (geralmente com camadas de convolução transposta) que atuará como o Gerador, responsável por criar imagens a partir de um vetor de ruído aleatório (z).
 
-4.  **Etapa 4: Definir o Discriminador**
-    *   Implementação da classe `Discriminator`: uma rede neural convolucional (CNN) que classifica imagens como reais ou falsas.
-    *   Arquitetura: Sequência de camadas `Conv2d`, `LeakyReLU`, `Dropout`, `BatchNorm2d`, `Flatten`, `Linear` e `Sigmoid`.
+6. Inicialização de Parâmetros
+Configuração de hiperparâmetros (taxa de aprendizado, tamanho do batch, dimensão latente), inicialização dos modelos Gerador e Discriminador, dos otimizadores (Adam), da função de perda (BCELoss) e definição do dispositivo (CPU/GPU).
 
-5.  **Etapa 5: Definir o Gerador**
-    *   Implementação da classe `Generator`: uma rede neural que gera imagens a partir de um vetor de ruído.
-    *   Arquitetura: Sequência de camadas `Linear`, `LeakyReLU`, `BatchNorm1d`, `Unflatten`, `ConvTranspose2d`, `BatchNorm2d` e `Tanh`.
+7. Treinamento da GAN
+Contém o loop principal de treinamento que:
+* Itera sobre as épocas e os batches de dados.
+* Realiza o treinamento do Discriminador (com amostras reais e falsas).
+* Realiza o treinamento do Gerador (tentando enganar o Discriminador).
+* Imprime as perdas (loss_D, loss_G) para acompanhamento.
+* Gera e exibe amostras de imagens falsas em intervalos regulares (e.g., a cada 10 épocas) para visualização do progresso.
 
-6.  **Etapa 6: Inicializar modelos, otimizadores e parâmetros**
-    *   Definição de hiperparâmetros (dimensão latente, taxa de aprendizado, betas do Adam).
-    *   Inicialização dos modelos Gerador e Discriminador, otimizadores (Adam), e função de perda (BCELoss).
-    *   Configuração do dispositivo (CPU ou GPU).
-    *   (Opcional) Inicialização de pesos.
+8. Salvamento dos Modelos
+Após o treinamento, salva os estados (state_dict) dos modelos Gerador e Discriminador treinados em arquivos .pt no diretório models/.
 
-7.  **Etapa 7: Treinar a GAN e Visualizar Resultados Parciais**
-    *   Loop principal de treinamento:
-        *   Itera sobre o número de épocas e batches.
-        *   Treina o Discriminador com imagens reais e falsas.
-        *   Treina o Gerador para enganar o Discriminador.
-        *   Imprime as perdas (Loss_D, Loss_G) ao final de cada época.
-        *   Visualiza amostras de imagens geradas a cada 10 épocas.
+▶️ Como Executar
+✅ Via Google Colab (Recomendado)
+Clique no botão "Abrir no Colab" no início deste README.
+![alt text](https://colab.research.google.com/assets/colab-badge.svg)
+No Colab, para um treinamento mais rápido, vá em Ambiente de execução → Alterar tipo de ambiente de execução e selecione GPU como acelerador de hardware.
+Execute todas as células do notebook em sequência.
 
-8.  **Etapa 8: Salvar os modelos (após o treinamento)**
-    *   Salva os pesos (`state_dict`) dos modelos Gerador e Discriminador treinados nos arquivos `generator_4.pt` e `discriminator_4.pt`.
+💻 Localmente
+Clone o repositório:
+git clone https://github.com/dede0702/mnist-digit-4-gan.git
+cd mnist-digit-4-gan
 
-## 🚀 Como Executar
+Instale as dependências (recomenda-se o uso de um ambiente virtual, ex: venv ou conda):
+pip install torch torchvision matplotlib
 
-A maneira mais fácil de executar o projeto é através do Google Colab:
+Execute o notebook:
+Abra e execute o notebook MNIST_GAN_Digito4.ipynb utilizando Jupyter Notebook, JupyterLab, VS Code ou sua IDE preferida.
 
-1.  Clique no botão "Abrir no Colab" no início deste README para abrir o notebook `MNIST_GAN_Digito4.ipynb` diretamente no Google Colab.
-    [![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dede0702/mnist-digit-4-gan/blob/main/MNIST_GAN_Digito4.ipynb)
-2.  No Colab, certifique-se de selecionar um ambiente de execução com GPU para um treinamento mais rápido (Ambiente de execução -> Alterar tipo de ambiente de execução -> Acelerador de hardware -> GPU).
-3.  Execute as células do notebook em sequência.
+📊 Resultados Esperados
+Saída no console/notebook mostrando as perdas do Discriminador (Loss_D) e do Gerador (Loss_G) por época de treinamento.
+Visualizações periódicas (ex: grades de 4x4 imagens) das amostras geradas pelo modelo, demonstrando a evolução da qualidade.
+Ao final, os modelos treinados (generator_4.pt e discriminator_4.pt) estarão salvos no diretório models/.
 
-Alternativamente, para executar localmente:
+Exemplo de Saída Visual:
+Se você adicionar um arquivo sample_output.png no diretório images/, ele aparecerá aqui:
+<p align="center">
+<img src="images/sample_output.png" width="200" alt="Exemplo de Dígito 4 Gerado pelo modelo">
+</p>
+*(Substitua ou adicione sua própria imagem de exemplo gerada aqui.)*
 
-1.  **Clone o repositório:**
-    ```bash
-    git clone https://github.com/dede0702/mnist-digit-4-gan.git
-    cd mnist-digit-4-gan
-    ```
+🔧 Melhorias Futuras e Próximos Passos
+Ajuste Fino de Hiperparâmetros: Experimentar diferentes valores para taxa de aprendizado, tamanho do batch, dimensão do espaço latente, ou mesmo arquiteturas para os modelos Gerador e Discriminador.
+Técnicas de Estabilização de Treinamento: Investigar e implementar técnicas como "label smoothing", uso de diferentes funções de perda (ex: Wasserstein GAN - WGAN), ou normalização espectral.
+Avaliação Quantitativa: Implementar métricas de avaliação de GANs, como Fréchet Inception Distance (FID) ou Inception Score (IS), para uma análise mais objetiva da qualidade e diversidade das imagens geradas.
+Geração Condicional: Modificar a GAN para ser condicional, permitindo, por exemplo, gerar outros dígitos específicos sob comando.
 
-2.  **Instale as dependências:**
-    ```bash
-    pip install torch torchvision matplotlib
-    ```
-    (Recomenda-se o uso de um ambiente virtual Python: `python -m venv venv`, depois `source venv/bin/activate` ou `venv\Scripts\activate` no Windows).
+📝 Licença
+Este projeto é desenvolvido para fins acadêmicos e educacionais e está disponível como código aberto. Sinta-se à vontade para utilizá-lo e modificá-lo.
 
-3.  **Execute o notebook `MNIST_GAN_Digito4.ipynb`** usando Jupyter Notebook, JupyterLab, VS Code ou outra IDE compatível.
+📬 Contato
+Para dúvidas, sugestões ou colaborações, entre em contato através dos perfis do GitHub dos integrantes do projeto.
+**Observação Importante sobre o Código no Notebook:**
 
-## 🖼️ Resultados Esperados
+Para que os modelos sejam salvos e carregados corretamente na pasta `models/` conforme a estrutura do repositório, você precisará ajustar ligeiramente o código de salvamento e carregamento no seu notebook `MNIST_GAN_Digito4.ipynb`:
 
--   Saída no console/notebook mostrando as perdas do Discriminador (Loss_D) e do Gerador (Loss_G) a cada época de treinamento.
--   Exibição de grades de imagens (4x4) geradas pelo modelo a cada 10 épocas, permitindo visualizar a melhoria progressiva na qualidade das imagens.
--   Ao final da execução, os arquivos `generator_4.pt` e `discriminator_4.pt` serão criados (se executado localmente e a célula de salvamento for executada) ou poderão ser baixados do ambiente Colab.
+**Para salvar os modelos:**
 
-Exemplo de imagem gerada (após treinamento suficiente):
-*(Você pode adicionar uma pequena imagem de exemplo aqui se desejar, por exemplo, uma captura de tela de uma boa saída do gerador)*
-<!-- <p align="center">
-  <img src="path/to/your/sample_generated_image.png" width="200" alt="Exemplo de Dígito 4 Gerado">
-</p> -->
+```python
+import os
 
-## 🔮 Possíveis Melhorias e Próximos Passos
+# ... (definição do gerador e discriminador) ...
+# ... (treinamento) ...
 
--   **Ajuste Fino de Hiperparâmetros**: Experimentar diferentes taxas de aprendizado, tamanhos de batch, dimensões do espaço latente, ou arquiteturas para os modelos.
--   **Técnicas de Estabilização de Treinamento**: Investigar e implementar técnicas como "label smoothing", diferentes funções de perda (ex: WGAN), ou normalização espectral.
--   **Avaliação Quantitativa**: Implementar métricas como Fréchet Inception Distance (FID) ou Inception Score (IS) para avaliar a qualidade e diversidade das imagens geradas.
--   **Geração Condicional**: Modificar a GAN para ser capaz de gerar outros dígitos ou variações específicas.
--   **Treinamento em Outros Dígitos**: Adaptar o `MNIST4Dataset` para treinar a GAN em outros dígitos individualmente.
+# Criar o diretório models/ se ele não existir
+output_dir = "models"
+os.makedirs(output_dir, exist_ok=True)
+
+torch.save(generator.state_dict(), os.path.join(output_dir, "generator_4.pt"))
+torch.save(discriminator.state_dict(), os.path.join(output_dir, "discriminator_4.pt"))
+print(f"Modelos salvos em {output_dir}/")
+Use code with caution.
+Para carregar os modelos (exemplo):
+# latent_dim = 100 # Mesmo latent_dim usado no treinamento
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# generator = Generator(latent_dim) # Recriar a arquitetura
+# generator.load_state_dict(torch.load("models/generator_4.pt", map_location=device))
+# generator.to(device)
+# generator.eval() # Modo de avaliação
+
+# discriminator = Discriminator() # Recriar a arquitetura
+# discriminator.load_state_dict(torch.load("models/discriminator_4.pt", map_location=device))
+# discriminator.to(device)
+# discriminator.eval() # Modo de avaliação
