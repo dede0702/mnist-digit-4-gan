@@ -2,10 +2,10 @@
 
 Este projeto implementa uma Rede Adversarial Generativa (GAN) para gerar imagens manuscritas do dígito "4", utilizando o subconjunto correspondente do dataset MNIST e a biblioteca PyTorch.
 
-O notebook principal do projeto, contendo todo o código e as execuções, pode ser encontrado em: `GAN_MNIST_Digito_4.ipynb`.
+O notebook principal do projeto, contendo todo o código e as execuções, é o `MNIST_GAN_Digito4.ipynb`.
 
-[![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dede0702/mnist-digit-4-gan/blob/main/GAN_MNIST_Digito_4.ipynb)
-*(Certifique-se de que o arquivo `GAN_MNIST_Digito_4.ipynb` está no diretório raiz do seu repositório na branch `main` para este link funcionar corretamente)*
+[![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dede0702/mnist-digit-4-gan/blob/main/MNIST_GAN_Digito4.ipynb)
+*(Certifique-se de que o arquivo `MNIST_GAN_Digito4.ipynb` está no diretório raiz do seu repositório na branch `main` para este link funcionar corretamente)*
 
 ## 🎯 Objetivo
 
@@ -19,6 +19,19 @@ O objetivo principal é construir, treinar e avaliar um modelo GAN capaz de:
 - Andre Rovai        (RM555848)
 - Lancelot Chagas    (RM554707)
 
+## 📂 Estrutura do Repositório
+
+A estrutura de arquivos do projeto é a seguinte:
+Use code with caution.
+Markdown
+mnist-digit-4-gan/
+│
+├── MNIST_GAN_Digito4.ipynb # Notebook principal com todo o código, treinamento e visualizações
+├── generator_4.pt # Pesos do modelo Gerador treinado (state_dict)
+├── discriminator_4.pt # Pesos do modelo Discriminador treinado (state_dict)
+└── README.md # Este arquivo de descrição do projeto
+*Observação: Os arquivos `.pt` contêm os modelos treinados. O dataset MNIST é baixado automaticamente pelo script no notebook e geralmente não é incluído no repositório.*
+
 ## 🛠️ Tecnologias Utilizadas
 
 - Python 3.x
@@ -26,7 +39,7 @@ O objetivo principal é construir, treinar e avaliar um modelo GAN capaz de:
 - Torchvision (para o dataset MNIST e transformações)
 - Matplotlib (para visualização de imagens)
 
-## ⚙️ Estrutura do Código (conforme no Notebook `GAN_MNIST_Digito_4.ipynb`)
+## ⚙️ Estrutura do Código (conforme no Notebook `MNIST_GAN_Digito4.ipynb`)
 
 O projeto está estruturado nas seguintes etapas principais dentro do notebook:
 
@@ -66,14 +79,14 @@ O projeto está estruturado nas seguintes etapas principais dentro do notebook:
         *   Visualiza amostras de imagens geradas a cada 10 épocas.
 
 8.  **Etapa 8: Salvar os modelos (após o treinamento)**
-    *   Salva os pesos (`state_dict`) dos modelos Gerador e Discriminador treinados em arquivos `.pt`.
+    *   Salva os pesos (`state_dict`) dos modelos Gerador e Discriminador treinados nos arquivos `generator_4.pt` e `discriminator_4.pt`.
 
 ## 🚀 Como Executar
 
 A maneira mais fácil de executar o projeto é através do Google Colab:
 
-1.  Clique no botão "Abrir no Colab" no início deste README para abrir o notebook `GAN_MNIST_Digito_4.ipynb` diretamente no Google Colab.
-    [![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dede0702/mnist-digit-4-gan/blob/main/GAN_MNIST_Digito_4.ipynb)
+1.  Clique no botão "Abrir no Colab" no início deste README para abrir o notebook `MNIST_GAN_Digito4.ipynb` diretamente no Google Colab.
+    [![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dede0702/mnist-digit-4-gan/blob/main/MNIST_GAN_Digito4.ipynb)
 2.  No Colab, certifique-se de selecionar um ambiente de execução com GPU para um treinamento mais rápido (Ambiente de execução -> Alterar tipo de ambiente de execução -> Acelerador de hardware -> GPU).
 3.  Execute as células do notebook em sequência.
 
@@ -91,13 +104,13 @@ Alternativamente, para executar localmente:
     ```
     (Recomenda-se o uso de um ambiente virtual Python: `python -m venv venv`, depois `source venv/bin/activate` ou `venv\Scripts\activate` no Windows).
 
-3.  **Execute o notebook `GAN_MNIST_Digito_4.ipynb`** usando Jupyter Notebook, JupyterLab, VS Code ou outra IDE compatível.
+3.  **Execute o notebook `MNIST_GAN_Digito4.ipynb`** usando Jupyter Notebook, JupyterLab, VS Code ou outra IDE compatível.
 
 ## 🖼️ Resultados Esperados
 
 -   Saída no console/notebook mostrando as perdas do Discriminador (Loss_D) e do Gerador (Loss_G) a cada época de treinamento.
 -   Exibição de grades de imagens (4x4) geradas pelo modelo a cada 10 épocas, permitindo visualizar a melhoria progressiva na qualidade das imagens.
--   Ao final da execução, os arquivos `generator_digit4.pt` e `discriminator_digit4.pt` serão criados (se executado localmente e a célula de salvamento for executada) ou poderão ser baixados do ambiente Colab.
+-   Ao final da execução, os arquivos `generator_4.pt` e `discriminator_4.pt` serão criados (se executado localmente e a célula de salvamento for executada) ou poderão ser baixados do ambiente Colab.
 
 Exemplo de imagem gerada (após treinamento suficiente):
 *(Você pode adicionar uma pequena imagem de exemplo aqui se desejar, por exemplo, uma captura de tela de uma boa saída do gerador)*
@@ -112,5 +125,3 @@ Exemplo de imagem gerada (após treinamento suficiente):
 -   **Avaliação Quantitativa**: Implementar métricas como Fréchet Inception Distance (FID) ou Inception Score (IS) para avaliar a qualidade e diversidade das imagens geradas.
 -   **Geração Condicional**: Modificar a GAN para ser capaz de gerar outros dígitos ou variações específicas.
 -   **Treinamento em Outros Dígitos**: Adaptar o `MNIST4Dataset` para treinar a GAN em outros dígitos individualmente.
-
----
