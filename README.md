@@ -79,7 +79,8 @@ Contém o loop principal de treinamento que:
 8. Salvamento dos Modelos
 Após o treinamento, salva os estados (state_dict) dos modelos Gerador e Discriminador treinados em arquivos .pt no diretório models/.
 
-▶️ Como Executar
+▶️ Como Executar:
+
 ✅ Via Google Colab (Recomendado)
 Clique no botão "Abrir no Colab" no início deste README.
 ![alt text](https://colab.research.google.com/assets/colab-badge.svg)
