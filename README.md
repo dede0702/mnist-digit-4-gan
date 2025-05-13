@@ -89,8 +89,8 @@ Execute todas as células do notebook em sequência.
 
 💻 Localmente
 Clone o repositório:
-git clone https://github.com/dede0702/mnist-digit-4-gan.git
-cd mnist-digit-4-gan
+'git clone https://github.com/dede0702/mnist-digit-4-gan.git'
+'cd mnist-digit-4-gan'
 
 Instale as dependências (recomenda-se o uso de um ambiente virtual, ex: venv ou conda):
 pip install torch torchvision matplotlib
@@ -111,10 +111,10 @@ Se você adicionar um arquivo sample_output.png no diretório images/, ele apare
 *(Substitua ou adicione sua própria imagem de exemplo gerada aqui.)*
 
 🔧 Melhorias Futuras e Próximos Passos
-Ajuste Fino de Hiperparâmetros: Experimentar diferentes valores para taxa de aprendizado, tamanho do batch, dimensão do espaço latente, ou mesmo arquiteturas para os modelos Gerador e Discriminador.
-Técnicas de Estabilização de Treinamento: Investigar e implementar técnicas como "label smoothing", uso de diferentes funções de perda (ex: Wasserstein GAN - WGAN), ou normalização espectral.
-Avaliação Quantitativa: Implementar métricas de avaliação de GANs, como Fréchet Inception Distance (FID) ou Inception Score (IS), para uma análise mais objetiva da qualidade e diversidade das imagens geradas.
-Geração Condicional: Modificar a GAN para ser condicional, permitindo, por exemplo, gerar outros dígitos específicos sob comando.
+ - Ajuste Fino de Hiperparâmetros: Experimentar diferentes valores para taxa de aprendizado, tamanho do batch, dimensão do espaço latente, ou mesmo arquiteturas para os modelos Gerador e Discriminador.
+ - Técnicas de Estabilização de Treinamento: Investigar e implementar técnicas como "label smoothing", uso de diferentes funções de perda (ex: Wasserstein GAN - WGAN), ou normalização espectral.
+ - Avaliação Quantitativa: Implementar métricas de avaliação de GANs, como Fréchet Inception Distance (FID) ou Inception Score (IS), para uma análise mais objetiva da qualidade e diversidade das imagens geradas.
+ - Geração Condicional: Modificar a GAN para ser condicional, permitindo, por exemplo, gerar outros dígitos específicos sob comando.
 
 📝 Licença
 Este projeto é desenvolvido para fins acadêmicos e educacionais e está disponível como código aberto. Sinta-se à vontade para utilizá-lo e modificá-lo.
