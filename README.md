@@ -32,7 +32,7 @@ mnist-digit-4-gan/
 ├── models/
 │   ├── generator_4.pt          # Pesos do Gerador treinado
 │   └── discriminator_4.pt      # Pesos do Discriminador treinado
-├── MNIST_GAN_Digito4.ipynb     # Notebook principal com o código e execução
+├── GAN_MNIST_Digito_4.ipynb     # Notebook principal com o código e execução
 ├── images/
 │   └── sample_output.png       # Exemplo de imagem gerada (opcional)
 └── README.md                   # Este arquivo de descrição do projeto
@@ -47,7 +47,7 @@ PyTorch
 Torchvision
 Matplotlib
 
-🚦 Etapas do Notebook (MNIST_GAN_Digito4.ipynb)
+🚦 Etapas do Notebook (GAN_MNIST_Digito_4.ipynb)
 O notebook está organizado nas seguintes seções principais:
 
 1. Instalação de Dependências
