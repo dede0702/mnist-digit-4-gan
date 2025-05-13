@@ -22,14 +22,14 @@ O objetivo principal é construir, treinar e avaliar um modelo GAN capaz de:
 ## 📂 Estrutura do Repositório
 
 A estrutura de arquivos do projeto é a seguinte:
-Use code with caution.
-Markdown
+
 mnist-digit-4-gan/
 │
 ├── MNIST_GAN_Digito4.ipynb # Notebook principal com todo o código, treinamento e visualizações
 ├── generator_4.pt # Pesos do modelo Gerador treinado (state_dict)
 ├── discriminator_4.pt # Pesos do modelo Discriminador treinado (state_dict)
 └── README.md # Este arquivo de descrição do projeto
+
 *Observação: Os arquivos `.pt` contêm os modelos treinados. O dataset MNIST é baixado automaticamente pelo script no notebook e geralmente não é incluído no repositório.*
 
 ## 🛠️ Tecnologias Utilizadas
