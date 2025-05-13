@@ -4,7 +4,7 @@ Este projeto implementa uma Rede Adversarial Generativa (GAN) utilizando PyTorch
 
 [![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dede0702/mnist-digit-4-gan/blob/main/MNIST_GAN_Digito4.ipynb)
 
-> *Certifique-se de que o arquivo `MNIST_GAN_Digito4.ipynb` esteja no diretório raiz do repositório para o link do Colab funcionar corretamente.*
+> **Certifique-se de que o arquivo `MNIST_GAN_Digito4.ipynb` esteja no diretório raiz do repositório para o link do Colab funcionar corretamente.**
 
 ---
 
@@ -89,8 +89,10 @@ Execute todas as células do notebook em sequência.
 
 💻 Localmente
 Clone o repositório:
-'git clone https://github.com/dede0702/mnist-digit-4-gan.git'
-'cd mnist-digit-4-gan'
+```bash
+git clone https://github.com/dede0702/mnist-digit-4-gan.git
+cd mnist-digit-4-gan
+```
 
 Instale as dependências (recomenda-se o uso de um ambiente virtual, ex: venv ou conda):
 pip install torch torchvision matplotlib
